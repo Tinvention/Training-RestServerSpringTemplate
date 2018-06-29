@@ -3,8 +3,8 @@ Example/Template of a server side REST Web Application using SpringFramework
 
 Requirements
 --------
-* Postgresql Server 9.4 or newest
-** For Linux Ubuntu see here https://www.postgresql.org/download/linux/ubuntu/
+* Postgresql Server 9.4 or a more recent version  
+    * For Linux Ubuntu see here https://www.postgresql.org/download/linux/ubuntu/
 * JDK 1.8 , Maven 3.3.x
 
 Instructions
