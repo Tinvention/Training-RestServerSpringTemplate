@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,13 +42,13 @@ public class CustomerController extends AbstractRestController {
   }
 
   @PostMapping
-  public Long add(Customer toAdd) {
+  public Long add(@RequestBody Customer toAdd) {
     logger.debug("called with toAdd: " + toAdd);
     return customerService.add(toAdd);
   }
 
   @PutMapping
-  public void update(Customer toUpdate) {
+  public void update(@RequestBody Customer toUpdate) {
     logger.debug("called with toUpdate: " + toUpdate);
     customerService.updateById(toUpdate);
   }

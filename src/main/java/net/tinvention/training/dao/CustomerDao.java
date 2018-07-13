@@ -30,7 +30,7 @@ public class CustomerDao extends AbstractDao {
 
   @Transactional(readOnly=true)
   public Customer getById(final Long id) {
-    Assert.notNull(id);
+    Assert.notNull(id, "Id cannot be null");
     Map<String, Long> queryParams = Collections.singletonMap("id", id);
     return namedParameterJdbcTemplate.queryForObject(SELECT_BASE_QUERY + " WHERE id=:id", queryParams, customerRowMapper);
   }
@@ -46,7 +46,7 @@ public class CustomerDao extends AbstractDao {
    * @return the value of the generated ID
    */
   public Long add(final Customer newCustomer) {
-    Assert.isNull(newCustomer.getId());
+    Assert.isNull( newCustomer.getId(), "Id cannot be null");
 
     String sql = INSERT_BASE_QUERY + " (name, note) VALUES(:name, :note) ";
 
@@ -64,7 +64,7 @@ public class CustomerDao extends AbstractDao {
    * @return num of updated records
    */
   public int updateById(final Customer newValues) {
-    Assert.notNull(newValues.getId());
+    Assert.notNull(newValues.getId(), "Id cannot be null");
     
     String sql = UPDATE_BASE_QUERY  + " SET name=:name, note=:note "  + " WHERE id=:id" ;
       
@@ -78,7 +78,7 @@ public class CustomerDao extends AbstractDao {
    * @return num of deleted records
    */
   public int deleteById(final Long id) {
-    Assert.notNull(id);
+    Assert.notNull(id, "Id cannot be null");
     
     String sql = DELETE_BASE_QUERY + "  WHERE id=:id" ;
     

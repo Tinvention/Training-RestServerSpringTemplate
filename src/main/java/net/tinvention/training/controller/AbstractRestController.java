@@ -1,12 +1,11 @@
 package net.tinvention.training.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 public abstract class AbstractRestController {
   
-  protected Logger logger = LoggerFactory.getLogger(this.getClass());
+  protected Logger logger = LogManager.getLogger(this.getClass());
 
 }

@@ -16,9 +16,7 @@ import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import net.tinvention.training.controller.AbstractRestController;
 import net.tinvention.training.dao.AbstractDao;
 import net.tinvention.training.service.AbstractService;
 
@@ -30,12 +28,12 @@ import net.tinvention.training.service.AbstractService;
  */
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackageClasses={ AbstractDao.class, AbstractService.class })
+@ComponentScan(basePackageClasses = { AbstractDao.class, AbstractService.class })
 public abstract class CommonConfig {
 
 	@Autowired
 	protected Environment env;
-	
+
 	@Value("classpath:/init-db.sql")
 	private Resource initDbScript;
 
@@ -46,31 +44,30 @@ public abstract class CommonConfig {
 		dataSource.setUrl(env.getProperty("db.url"));
 		dataSource.setUsername(env.getProperty("db.username"));
 		dataSource.setPassword(env.getProperty("db.pwd"));
-		
+
 		return dataSource;
 	}
-	
+
 	@Bean
-  public PlatformTransactionManager getTransactionManager(final DataSource dataSource) {
-	  PlatformTransactionManager txManager = new DataSourceTransactionManager(dataSource);
-    return txManager;
-  }
+	public PlatformTransactionManager getTransactionManager(final DataSource dataSource) {
+		PlatformTransactionManager txManager = new DataSourceTransactionManager(dataSource);
+		return txManager;
+	}
 
 	@Bean
 	public DataSourceInitializer dataSourceInitializer(final DataSource dataSource) {
-	    final DataSourceInitializer initializer = new DataSourceInitializer();
-	    initializer.setDataSource(dataSource);
-	    initializer.setDatabasePopulator(databasePopulator());
-	    return initializer;
+		final DataSourceInitializer initializer = new DataSourceInitializer();
+		initializer.setDataSource(dataSource);
+		initializer.setDatabasePopulator(databasePopulator());
+		return initializer;
 	}
 
 	private DatabasePopulator databasePopulator() {
-	    final ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-	    populator.setIgnoreFailedDrops(false);
+		final ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+		populator.setIgnoreFailedDrops(false);
 
-	    populator.addScript(initDbScript);
-	    return populator;
+		populator.addScript(initDbScript);
+		return populator;
 	}
-	
-	
+
 }

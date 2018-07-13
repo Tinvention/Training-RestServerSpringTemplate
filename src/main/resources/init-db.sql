@@ -6,4 +6,3 @@ CREATE TABLE IF NOT EXISTS customer (
     created timestamp DEFAULT current_timestamp
 );
 
-    

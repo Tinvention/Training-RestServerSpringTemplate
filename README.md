@@ -15,5 +15,13 @@ Instructions
 
 Now you can use it, creating the war file and deploying it  (es. in Tomcat ) or import it "as maven project" in your IDE ( es. Eclipse ) 
 
+Usage
+--------
 
+* in order to add some content , you can invoke a POST Rest HTTP Request, for example using _curl_ tool:
 
+`` $ curl -d '{"name":"Customer Name", "note":"The note text about the customer"}' -H "Content-Type: application/json" -X POST http://localhost:8080/restAppTemplate/customers ``
+
+* in order to check content , you can invoke a GET Rest HTTP Request, for example using _curl_ tool: 
+
+`` $ curl -X GET http://localhost:8080/restAppTemplate/customers ``

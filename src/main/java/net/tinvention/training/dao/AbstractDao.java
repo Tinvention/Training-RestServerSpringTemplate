@@ -14,7 +14,4 @@ public abstract class AbstractDao {
 	    this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	
-	
-
 }

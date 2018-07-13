@@ -1,12 +1,11 @@
 package net.tinvention.training.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 public abstract class AbstractService {
   
-  protected Logger logger = LoggerFactory.getLogger(this.getClass());
+	protected Logger logger = LogManager.getLogger(this.getClass());
 
 }

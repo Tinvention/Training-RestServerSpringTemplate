@@ -1,9 +1,10 @@
 package net.tinvention.training.service;
 
-import static org.junit.Assert.fail;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import net.tinvention.training.config.AbstractTest;
@@ -15,14 +16,12 @@ public class CustomerServiceTest extends AbstractTest  {
 
   @Test
   public void testGetById() {
-    
     fail("Not yet implemented");
   }
 
   @Test
   public void testList() {
-    Assert.assertTrue(customerService.list().size() > 0 );
-
+    assertTrue(customerService.list().size() > 0 );
   }
 
   @Test

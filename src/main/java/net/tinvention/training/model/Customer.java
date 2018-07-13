@@ -43,6 +43,11 @@ public class Customer implements Serializable {
 		this.created = created;
 	}
 
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", note=" + note + ", created=" + created + "]";
+	}
+
 	
 
 }
