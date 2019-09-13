@@ -1,8 +1,8 @@
 package net.tinvention.training.config;
 
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +14,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
+import org.springframework.jndi.JndiTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -37,13 +38,17 @@ public abstract class CommonConfig {
 	@Value("classpath:/init-db.sql")
 	private Resource initDbScript;
 
+	/**
+	 * 
+	 * 
+	 * @return
+	 * @throws NamingException 
+	 */
 	@Bean
-	public DataSource getDataSource() {
-		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName("org.postgresql.Driver");
-		dataSource.setUrl(env.getProperty("db.url"));
-		dataSource.setUsername(env.getProperty("db.username"));
-		dataSource.setPassword(env.getProperty("db.pwd"));
+	public DataSource getDataSource() throws NamingException {
+		DataSource dataSource = null;
+		JndiTemplate jndi = new JndiTemplate();
+		dataSource = jndi.lookup("jdbc/trainingDB", DataSource.class);
 
 		return dataSource;
 	}

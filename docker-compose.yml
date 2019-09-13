@@ -1,0 +1,26 @@
+# Use postgres/admin user/password credentials
+version: '3.1'
+
+services:
+
+  main-db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+    volumes:
+      - ./create-user-db.sql:/docker-entrypoint-initdb.d/create-user-db.sql
+    ports:
+      - 5433:5432
+
+  test-db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+    volumes:
+      - ./create-user-db-test.sql:/docker-entrypoint-initdb.d/create-user-db-test.sql
+    ports:
+      - 5434:5432
