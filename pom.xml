@@ -75,7 +75,7 @@
 			<version>${log4j.version}</version>
 		</dependency>
 
-       <!-- Tests -->
+		<!-- Tests -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>

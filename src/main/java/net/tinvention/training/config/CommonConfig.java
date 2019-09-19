@@ -37,6 +37,7 @@ public abstract class CommonConfig {
 
 	@Value("classpath:/init-db.sql")
 	private Resource initDbScript;
+	
 
 	/**
 	 * 
@@ -48,7 +49,7 @@ public abstract class CommonConfig {
 	public DataSource getDataSource() throws NamingException {
 		DataSource dataSource = null;
 		JndiTemplate jndi = new JndiTemplate();
-		dataSource = jndi.lookup("jdbc/trainingDB", DataSource.class);
+		dataSource = jndi.lookup(env.getProperty("main.ds.jndi"), DataSource.class);
 
 		return dataSource;
 	}
