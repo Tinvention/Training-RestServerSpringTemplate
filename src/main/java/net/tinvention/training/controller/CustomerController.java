@@ -1,5 +1,6 @@
 package net.tinvention.training.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -21,42 +22,48 @@ import net.tinvention.training.service.CustomerService;
 @RequestMapping("/customers")
 public class CustomerController extends AbstractRestController {
 
-  @Autowired
-  private CustomerService customerService;
+	@Autowired
+	private CustomerService customerService;
 
-  @PostConstruct
-  protected void init() {
-    logger.debug("called");
-  }
+	@PostConstruct
+	protected void init() {
+		logger.debug("called");
+	}
 
-  @GetMapping
-  public List<Customer> list() {
-    logger.debug("called");
-    return customerService.list();
-  }
+	@GetMapping
+	public List<Customer> list() {
+		logger.debug("called");
+		return customerService.list();
+	}
 
-  @GetMapping("/{id}")
-  public Customer getCustomerById(@PathVariable("id") Long id) {
-    logger.debug("called with id: " + id);
-    return customerService.getById(id);
-  }
+	@GetMapping("/{id}")
+	public Customer getCustomerById(@PathVariable("id") Long id) {
+		logger.debug("called with id: " + id);
+		return customerService.getById(id);
+	}
 
-  @PostMapping
-  public Long add(@RequestBody Customer toAdd) {
-    logger.debug("called with toAdd: " + toAdd);
-    return customerService.add(toAdd);
-  }
+	@PostMapping
+	public Long add(@RequestBody Customer toAdd) {
+		logger.debug("called with toAdd: " + toAdd);
+		return customerService.add(toAdd);
+	}
 
-  @PutMapping
-  public void update(@RequestBody Customer toUpdate) {
-    logger.debug("called with toUpdate: " + toUpdate);
-    customerService.updateById(toUpdate);
-  }
+	@PutMapping
+	public void update(@RequestBody Customer toUpdate) {
+		logger.debug("called with toUpdate: " + toUpdate);
+		customerService.updateById(toUpdate);
+	}
 
-  @DeleteMapping("/{id}")
-  public void update(@PathVariable("id") Long id) {
-    logger.debug("called with id: " + id);
-    customerService.deleteById(id);
-  }
+	@DeleteMapping("/{id}")
+	public void update(@PathVariable("id") Long id) {
+		logger.debug("called with id: " + id);
+		customerService.deleteById(id);
+	}
+
+	@GetMapping("/countWithLeak")
+	public int countWithLeak() throws SQLException {
+		logger.debug("called ");
+		return customerService.countWithLeak();
+	}
 
 }

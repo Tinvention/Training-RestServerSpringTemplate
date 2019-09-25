@@ -1,6 +1,5 @@
 package net.tinvention.training.config;
 
-import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
-import org.springframework.jndi.JndiTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -37,22 +35,6 @@ public abstract class CommonConfig {
 
 	@Value("classpath:/init-db.sql")
 	private Resource initDbScript;
-	
-
-	/**
-	 * 
-	 * 
-	 * @return
-	 * @throws NamingException 
-	 */
-	@Bean
-	public DataSource getDataSource() throws NamingException {
-		DataSource dataSource = null;
-		JndiTemplate jndi = new JndiTemplate();
-		dataSource = jndi.lookup(env.getProperty("main.ds.jndi"), DataSource.class);
-
-		return dataSource;
-	}
 
 	@Bean
 	public PlatformTransactionManager getTransactionManager(final DataSource dataSource) {

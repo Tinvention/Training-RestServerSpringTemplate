@@ -25,3 +25,8 @@ Usage
 
 	`` $ curl -X GET http://localhost:8080/restAppTemplate/customers ``
 	
+
+Jmeter
+--------	
+*  if the GUI is not well readable, see here https://jmeter.apache.org/usermanual/hints_and_tips.html the "22.4 JMeter with a HiDPI screen on Linux or Windows" cap. , the file to modify is jmeter.properties ( search for hidpi there are already suggested configs )
+  

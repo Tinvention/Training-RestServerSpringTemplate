@@ -1,5 +1,6 @@
 package net.tinvention.training.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,33 +13,37 @@ import net.tinvention.training.model.Customer;
 
 @Service
 public class CustomerService extends AbstractService {
-  
-  @Autowired
-  private CustomerDao customerDao;
-  
-  @PostConstruct
-  protected void init() {
-    logger.debug("called");
-  }
 
-  public Customer getById(final Long id) {
-    return customerDao.getById(id);
-  }
+	@Autowired
+	private CustomerDao customerDao;
 
-  public List<Customer> list() {
-    return customerDao.list();
-  }
+	@PostConstruct
+	protected void init() {
+		logger.debug("called");
+	}
 
-  public Long add(Customer Customer) {
-    return customerDao.add(Customer);
-  }
+	public Customer getById(final Long id) {
+		return customerDao.getById(id);
+	}
 
-  public void updateById(Customer Customer) {
-    customerDao.updateById(Customer);
-  }
+	public List<Customer> list() {
+		return customerDao.list();
+	}
 
-  public void deleteById(Long pid) {
-    customerDao.deleteById(pid);
-  }
-  
+	public Long add(Customer Customer) {
+		return customerDao.add(Customer);
+	}
+
+	public void updateById(Customer Customer) {
+		customerDao.updateById(Customer);
+	}
+
+	public void deleteById(Long pid) {
+		customerDao.deleteById(pid);
+	}
+
+	public int countWithLeak() throws SQLException {
+		return customerDao.countWithLeak();
+	}
+
 }

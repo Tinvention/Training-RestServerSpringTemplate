@@ -4,6 +4,6 @@
 -- Connect as admin/root/postgres ( superuser ) to execute these instructions
 
 -- Webapp db and user
-CREATE USER "mainTestDbUsername" WITH PASSWORD 'mainDbTestPwd';
-CREATE DATABASE "mainTestDB" WITH ENCODING='UTF8' OWNER="mainDbTestUsername";
 
+CREATE USER "testDbUsername" WITH PASSWORD 'testDbPwd';
+CREATE DATABASE "testAppDB" WITH ENCODING='UTF8' OWNER="testDbUsername";
