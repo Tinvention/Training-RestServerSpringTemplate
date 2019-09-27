@@ -94,6 +94,7 @@ public class CustomerDao extends AbstractDao {
 	public int countWithLeak() throws SQLException {
 		Connection conn = dataSource.getConnection();
 		ResultSet res = conn.createStatement().executeQuery(COUNT_BASE_QUERY);
+		res.next();
 
 		// do not close the connection to simulate a leak
 
