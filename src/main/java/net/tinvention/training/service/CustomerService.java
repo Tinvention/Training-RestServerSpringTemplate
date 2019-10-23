@@ -1,6 +1,7 @@
 package net.tinvention.training.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -44,6 +45,19 @@ public class CustomerService extends AbstractService {
 
 	public int countWithLeak() throws SQLException {
 		return customerDao.countWithLeak();
+	}
+	
+	//Simulating mem leak
+	private List<Customer> leakList = new ArrayList<>();
+
+	public List<Customer> listWithMemLeak() {
+		List<Customer> retrivedList = list();
+	
+		for(int i=0;i<10;i++) { // Enforce leak
+			leakList.addAll(retrivedList);
+		}
+		
+		return leakList;
 	}
 
 }

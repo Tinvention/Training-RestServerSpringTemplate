@@ -65,5 +65,11 @@ public class CustomerController extends AbstractRestController {
 		logger.debug("called ");
 		return customerService.countWithLeak();
 	}
+	
+	@GetMapping("/listWithMemLeak")
+	public List<Customer> listWithMemLeak() throws SQLException {
+		logger.debug("called ");
+		return customerService.listWithMemLeak();
+	}
 
 }

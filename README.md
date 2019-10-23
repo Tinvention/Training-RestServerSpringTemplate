@@ -13,6 +13,8 @@ Instructions
 * Create, and use, a wildfly configuration without faces extension and module ( es. comment-out from standalone.xml and save as standalone-nofaces.xml )
 * Configure the JNDI DataSource , see the name used in web.xml file, and check it is working
 * Now you can use it, creating the war file and deploying it  (es. in Wildfly or tomcat ) or import it "as maven project" in your IDE ( es. Eclipse ) 
+* Hint: to skip tests `` $ mvn clean package -DskipTests `` 
+
 
 Usage
 --------
