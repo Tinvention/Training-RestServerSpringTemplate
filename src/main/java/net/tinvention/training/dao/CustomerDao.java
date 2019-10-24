@@ -3,7 +3,6 @@ package net.tinvention.training.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -91,13 +90,9 @@ public class CustomerDao extends AbstractDao {
 		Map<String, Object> queryParams = Collections.singletonMap("id", id);
 		return namedParameterJdbcTemplate.update(sql, queryParams);
 	}
-	
-	//Simiulating conn leak keeping here instances to enforce the leak ( it's also a mem leak )
-	private List<Connection> leakedConnections = new ArrayList<>();
 
 	public int countWithLeak() throws SQLException {
 		Connection conn = dataSource.getConnection();
-		leakedConnections.add(conn);
 		ResultSet res = conn.createStatement().executeQuery(COUNT_BASE_QUERY);
 		res.next();
 

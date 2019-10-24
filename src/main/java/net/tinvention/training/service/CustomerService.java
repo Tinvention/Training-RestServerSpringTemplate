@@ -2,6 +2,7 @@ package net.tinvention.training.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -48,12 +49,12 @@ public class CustomerService extends AbstractService {
 	}
 	
 	//Simulating mem leak
-	private List<Customer> leakList = new ArrayList<>();
+	private List<Customer> leakList = Collections.synchronizedList(new ArrayList<>());
 
 	public List<Customer> listWithMemLeak() {
 		List<Customer> retrivedList = list();
 	
-		for(int i=0;i<10;i++) { // Enforce leak
+		for(int i=0;i<20;i++) { // Enforce leak
 			leakList.addAll(retrivedList);
 		}
 		
